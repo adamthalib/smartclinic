@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>List User</title>
+    <link rel="stylesheet" href="../static/assets/bootstrap.min.css" th:href="@{/assets/bootstrap.min.css}">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:400,400i,700,700i,600,600i">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/material-design-icons/3.0.1/iconfont/material-icons.min.css">
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/simple-line-icons/2.4.1/css/simple-line-icons.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.10.0/baguetteBox.min.css">
+    <link rel="stylesheet" href="../static/assets/styles.min.css" th:href="@{/assets/styles.min.css}">
+</head>
+
+<body>
+<nav class="navbar navbar-dark navbar-expand-lg fixed-top bg-primary clean-navbar">
+    <div class="container"><a class="navbar-brand logo" href="#">Smart Clinic</a>
+        <button class="navbar-toggler" data-toggle="collapse" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span
+                class="navbar-toggler-icon"></span></button>
+        <div class="collapse navbar-collapse"
+             id="navcol-1">
+            <ul class="nav navbar-nav ml-auto">
+                <li class="nav-item" role="presentation"><a class="nav-link" th:href="@{/home}">Home</a></li>
+                <li class="nav-item" role="presentation"><a href="" class="nav-link">position</a></li>
+                <li class="nav-item" role="presentation"><a href="" class="nav-link active" th:href="@{/users}">user</a>
+                </li>
+                <li class="nav-item" role="presentation"><a class="nav-link" th:href="@{/patients}">Patient</a></li>
+                <li class="nav-item" role="presentation"><a href="" class="nav-link">poli</a></li>
+                <li class="nav-item" role="presentation"><a href="" class="nav-link">schedule</a></li>
+                <li class="nav-item" role="presentation"><a class="nav-link" href="">Register</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<main class="page contact-us-page">
+    <section class="clean-block clean-dark">
+        <br><br>
+        <div class=" container mb-5 pb-5  ">
+            <br>
+            <div class="text-center">
+                <h2 class="text-info">List User</h2>
+            </div>
+            <a th:href="@{/users/add}" class="btn btn-primary"><i class="fa fa-plus"> Add User</i></a>
+            <div><br></div>
+            <div class="row  table-responsive-xl">
+                <table class="table table-striped ">
+                    <thead>
+
+                    <th scope="col">Name</th>
+                    <th scope="col">ID Number</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">DOB</th>
+                    <th scope="col">Gender</th>
+                    <th scope="col">Address</th>
+                    <th scope="col">Post Code</th>
+                    <th scope="col">City</th>
+                    <th scope="col">Province</th>
+                    <th scope="col">Phone Number</th>
+                    <th scope="col">Action</th>
+
+                    </thead>
+                    <tbody>
+                    <tr th:each="u : ${users}">
+                        <td th:text="${#strings.capitalize(u.firstName)} + ' ' + ${#strings.capitalize(u.lastName)}">
+                            Nama
+                        </td>
+                        <td th:text="${u.idNumber}">Nomer ID</td>
+                        <td th:text="${u.email}">Email</td>
+                        <td th:text="${u.dob}">TTL</td>
+                        <td th:text="${#strings.capitalize(u.gender)}">Gender</td>
+                        <td th:text="${#strings.capitalize(u.address)}">Street</td>
+                        <td th:text="${#strings.capitalize(u.postCode)}">Postal Code</td>
+                        <td th:text="${#strings.capitalize(u.city)}">City</td>
+                        <td th:text="${#strings.capitalize(u.province)}">Province</td>
+                        <td th:text="${u.phone1} + ' / ' + ${u.phone2}">Phone</td>
+                        <td>
+                            <a th:href="@{/users/edit/{id}(id=${u.id})}" class="btn btn-success"><i
+                                    class="fa fa-edit"></i> </a>
+                            <a th:href="@{/users/delete/{id}(id=${u.id})}" class="btn btn-danger"><i
+                                    class="fa fa-user-times ml-2"></i></a></td>
+                    </tr>
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+</main>
+<br><br><br><br><br>
+<footer class="page-footer dark">
+    <div class="footer-copyright">
+        <p><i>© 2019 Mitrais Internship</i></p>
+    </div>
+</footer>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.10.0/baguetteBox.min.js"></script>
+<script src="/assets/js/script.min.js?h=91b2b9fd6a86fd92a6ad1efe2b2bd17f"></script>
+</body>
+
+</html>

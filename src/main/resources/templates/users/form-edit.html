@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>Add User</title>
+    <link rel="stylesheet" href="../static/assets/bootstrap.min.css" th:href="@{/assets/bootstrap.min.css}">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:400,400i,700,700i,600,600i">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/material-design-icons/3.0.1/iconfont/material-icons.min.css">
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/simple-line-icons/2.4.1/css/simple-line-icons.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.10.0/baguetteBox.min.css">
+    <link rel="stylesheet" href="../static/assets/styles.min.css" th:href="@{/assets/styles.min.css}">
+</head>
+
+<body>
+<nav class="navbar navbar-dark navbar-expand-lg fixed-top bg-primary clean-navbar">
+    <div class="container text-white"><a class="navbar-brand logo" href="#">Smart Clinic</a>
+        <button class="navbar-toggler" data-toggle="collapse" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span
+                class="navbar-toggler-icon"></span></button>
+        <div class="collapse navbar-collapse"
+             id="navcol-1">
+            <ul class="nav navbar-nav ml-auto">
+                <li class="nav-item" role="presentation"><a class="nav-link" th:href="@{/home}">Home</a></li>
+                <li class="nav-item" role="presentation"><a href="" class="nav-link">position</a></li>
+                <li class="nav-item" role="presentation"><a href="" class="nav-link active"th:href="@{/users}">user</a></li>
+                <li class="nav-item" role="presentation"><a class="nav-link " th:href="@{/patients}">Patient</a></li>
+                <li class="nav-item" role="presentation"><a href="" class="nav-link">poli</a></li>
+                <li class="nav-item" role="presentation"><a href="" class="nav-link">schedule</a></li>
+                <li class="nav-item" role="presentation"><a class="nav-link" href="">Register</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<main class="page landing-page text-info">
+    <section class="clean-block features mt-5">
+        <div class="container">
+            <div class="text-center">
+                <h2 class="text-info">Form Edit User</h2>
+            </div>
+            <br><br>
+            <form action="#" data-parsley-validate th:action="@{/users/edit/{id}(id=${user.id})}" th:object="${user}" method="post">
+
+                <div class="form-row">
+                    <div class="form-group col-sm-6">
+                        <label for="firstName">First Name</label>
+                        <input type="text" th:field="*{firstName}" id="firstName" data-parsley-trigger="change"
+                               data-parsley-minlength="2" data-parsley-maxlength="60"
+                               data-parsley-minlength-message="You need to enter at least 2 caracters for the first name"
+                               name="firstName" placeholder="first name e.g Jon" required="required"
+                               class="form-control">
+                    </div>
+                    <div class="form-group col-sm-6">
+                        <label for="lastName">Last Name</label>
+                        <input type="text" th:field="*{lastName}" id="lastName" data-parsley-trigger="change"
+                               data-parsley-minlength="2" data-parsley-maxlength="60"
+                               data-parsley-minlength-message="You need to enter at least 2 caracters for the last name"
+                               name="firstName" placeholder="last name e.g Doe" required="required"
+                               class="form-control">
+                    </div>
+                </div>
+
+
+
+                <div class="form-row">
+                    <div class="form-group col-sm-6">
+                        <label for="email">Email</label>
+                        <input type="email" th:field="*{email}" id="email" placeholder="example@mail.com"
+                               data-parsley-trigger="change" name="email" required="required" class="form-control">
+                    </div>
+                    <div class="form-group col-sm-6">
+                        <label for="idNumber">ID Number</label>
+                        <input type="text" th:field="*{idNumber}" id="idNumber" placeholder="Input Your ID Number"
+                               required="required" data-parsley-trigger="change" data-parsley-minlength="16"
+                               data-parsley-maxlength="16" class="form-control">
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group col-sm-6">
+                        <label for="password">Password</label>
+                        <input type="password" th:field="*{password}" id="password" data-parsley-trigger="change"
+                               data-parsley-minlength="5" data-parsley-maxlength="12"
+                               data-parsley-minlength-message="You need to enter at least 5 caracters for the password"
+                               name="password" placeholder="password" required="required"
+                               class="form-control">
+                    </div>
+                    <div class="form-group col-sm-6">
+                        <label for="passwordChecker">Password Checker</label>
+                        <input type="password" id="passwordChecker" data-parsley-trigger="change"
+                               data-parsley-equalto="#password" name="passwordChecker"
+                               placeholder="Retype Password" required="required"
+                               class="form-control">
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group col-sm-6">
+                        <label for="dob">Date of Birth</label>
+                        <input type="date" th:field="*{dob}" id="dob" class="form-control" required="required">
+                    </div>
+                    <div class="form-group col-sm-6">
+                        <label>Gender<br>
+                            <input type="radio" name="gender" th:text="Laki-laki" th:value="laki-laki"
+                                   th:field="*{gender}" required><br/>
+                            <input type="radio" name="gender" th:text="Perempuan" th:value="perempuan"
+                                   th:field="*{gender}"><br/>
+                            <input type="radio" name="gender" th:text="Lainnya" th:value="lainnya" th:field="*{gender}"><br/>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group col-sm-6">
+                        <label for="phone1">Phone 1</label>
+                        <input type="text" th:field="*{phone1}" id="phone1" placeholder="Insert Phone 1"
+                               required="required" data-parsley-trigger="change" data-parsley-minlength="8" data-parsley-maxlength="20"
+                               data-parsley-minlength-message="You need to enter at least 8 digits of your telephone number"
+                               class="form-control">
+                    </div>
+                    <div class="form group col-sm-6">
+                        <label for="phone2">Phone 2</label>
+                        <input type="text" th:field="*{phone2}" id="phone2" placeholder="Insert Phone 2"
+                               class="form-control">
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group col-sm-4">
+                        <label for="address">Address</label>
+                        <input type="text" th:field="*{address}" id="address" placeholder="Insert Address" required="required"
+                               data-parsley-trigger="change"
+                               data-parsley-minlength="2" data-parsley-maxlength="60"
+                               data-parsley-minlength-message="You need to enter at least 2 caracters for the address name"
+                               class="form-control">
+                    </div>
+
+                    <div class="form-group col-sm-2">
+                        <label for="postCode">Postal Code</label>
+                        <input type="text" th:field="*{postCode}" id="postCode" placeholder="Insert PostCode"
+                               required="required" data-parsley-trigger="change" data-parsley-minlength="5" data-parsley-maxlength="5"
+                               data-parsley-minlength-message="You need to enter a 5 digits postal code"
+                               class="form-control">
+                    </div>
+
+                    <div class="form-group col-sm-3">
+                        <label for="city">City</label>
+                        <input type="text" th:field="*{city}" id="city" placeholder="Insert City" required="required"
+                               data-parsley-trigger="change" data-parsley-minlength="2" data-parsley-maxlength="60"
+                               data-parsley-minlength-message="You need to enter at least 2 caracters for the city name"
+                               class="form-control">
+                    </div>
+
+                    <div class="form-group col-sm-3">
+                        <label for="province">Province</label>
+                        <input type="text" th:field="*{province}" id="province" placeholder="Insert Province" required="required"
+                               data-parsley-trigger="change" data-parsley-minlength="2" data-parsley-maxlength="60"
+                               data-parsley-minlength-message="You need to enter at least 2 caracters for the province name"
+                               class="form-control">
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group col-sm-6">
+                        <label>Role<br>
+                            <select name="role" class="form-control">
+                                <option th:each="role : ${T(com.mitrais.smartclinic.model.Roles).values()}"
+                                        th:value="${role}" th:text="${role.displayValue}"></option>
+                            </select>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="text-center">
+                    <button type="submit" class="btn btn-primary">Save</button>
+                    <a th:href="@{/users}" class="btn btn-danger">Cancel</a>
+                </div>
+
+            </form>
+        </div>
+    </section>
+</main>
+
+
+<footer class="page-footer dark">
+    <div class="footer-copyright">
+        <p><i>© 2019 Mitrais Internship</i></p>
+    </div>
+</footer>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.10.0/baguetteBox.min.js"></script>
+<script src="/assets/js/script.min.js?h=91b2b9fd6a86fd92a6ad1efe2b2bd17f"></script>
+<!-- Parsley -->
+<script src="../../static/vendors/parsleyjs/dist/parsley.js" th:src="@{/vendors/parsleyjs/dist/parsley.js}"></script>
+</body>

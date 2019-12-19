@@ -1,0 +1,17 @@
+spring:
+  jpa:
+    hibernate:
+      ddl-auto: update
+  datasource:
+    #for local purpose
+    #url: jdbc:postgresql://localhost:5432/smartclinicdb
+    #username: postgres
+    #password: root
+    #for deployment purpose
+    url: jdbc:postgresql://ec2-107-21-93-51.compute-1.amazonaws.com:5432/d7rmbtth6knu83
+    username: yulcqeicwhyjht
+    password: 2f357a572b86bc3ae70fc6e1a34c1147216e74be15bd8806d34489f0305f4199
+
+    hikari:
+      connection-timeout: 20000
+      maximum-pool-size: 5
